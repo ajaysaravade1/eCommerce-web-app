@@ -1,11 +1,7 @@
 
 import streamlit as st
-import altair as alt
 import math
-import numpy as np
-import plotly.express as px
 import pandas as pd
-import plotly.graph_objects as go
 
 from streamlit_option_menu import option_menu
 
@@ -21,6 +17,7 @@ for i in range(len(result)):
   if result[i]==True:
     df[col[i]] = df[col[i]].fillna(0)
 
+
 df['visit_dt'] = pd.to_datetime(df['visit_dt'],format='%Y%m%d').dt.date
 revenue = math.floor(df["order_revenue"].sum())
 conversion_rate = (df["order_count"].sum()/df["product_view_plp"].sum()*100).round(2)
@@ -30,6 +27,7 @@ avg_time_on_site = df["avg_time_on_site"].sum()/df["session_count"].sum()
 total_customer = df["user_id"].nunique()
 
 st.title("Dashboard")
+
 
 
 col1, col2, col3, col4, col5, col6 = st.columns(6)
